@@ -1,3 +1,5 @@
+'use-strict'
+
 function drawMeme(imgUrl, txt, size, align, color) {
     gCtx.beginPath();
     const img = new Image();

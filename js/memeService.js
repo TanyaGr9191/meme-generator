@@ -1,3 +1,5 @@
+'use-strict'
+
 var gKeywordSearchCountMap = {
     'funny': 12, 'cat': 16, 'dog': 0, 'puppy': 0, 'baby': 2,
     'happy': 0, 'crazy': 0, 'sarcastic': 0, 'sad': 0, 'animal': 0,
@@ -36,4 +38,13 @@ function getImg() {
 function getImgUrlById(imgId) {
     const image = gImgs.find(({ id }) => id === imgId );
     return image.url
+}
+
+function setLineTxt(text){
+    const [topLine] = gMeme.lines
+    topLine.txt = text
+    renderCanvas()
+}
+
+function setImg(){
 }

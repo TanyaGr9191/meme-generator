@@ -4,16 +4,33 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Page Title</title>
+    <title>Meme Modal</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='css/main.css'>
 </head>
 
 <body onload="onInit()">
-    <div class="meme-container">
-        <canvas class="meme-canvas" width="500" height="500" style="outline:5px solid rgb(0, 3, 0)"></canvas>
-    </div>
 
+
+    <!-- Meme modal -->
+    <div class="modal">
+    <div class="modal-container">
+        <div class="modal-content">
+            <h2>Create your Meme!</h2>
+            <canvas class="meme-canvas" width="500" height="500" style="outline:5px solid rgb(0, 3, 0)"></canvas>
+            
+            <form onsubmit="onAddInput(event)">
+                <input type="text" name="memeText" placeholder="First line of text" />
+                <!-- <input type="color" name="textColor" /> -->
+                <button>Go</button>
+                <!-- <button type="reset">Reset</button> -->
+            </form>
+        </div>
+        <button onclick="onCloseModal()">Close</button>
+      </div>
+      </div>
+
+    <script src='js/gallery/galleryController.js'></script>
     <script src='js/memeService.js'></script>
     <script src='js/memeController.js'></script>
     <script src='js/main.js'></script>
