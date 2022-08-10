@@ -28,11 +28,11 @@ function renderCanvas() {
 }
 
 function renderMeme() {
-    // const meme = getMeme()
-    // const { pos, color, size } = circle
-    // drawArc(pos.x, pos.y, size, color)
-    drawImg()
-
+    const meme = getMeme()
+    const imgUrl = getImgUrlById(meme.selectedImgId)
+    const [ topLine ] = meme.lines
+    const { txt, size, align, color } = topLine
+    drawMeme(imgUrl, txt, size,align, color)
 }
 
 function resizeCanvas(img) {

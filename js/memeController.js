@@ -1,34 +1,22 @@
-function drawImg() {
+function drawMeme(imgUrl, txt, size, align, color) {
+    gCtx.beginPath();
     const img = new Image();
-    img.src = 'img/dog.jpg';
-
+    img.src = imgUrl;
     img.onload = () => {
-        if(gElCanvas.width/gElCanvas.height !== img.width/img.height){
-            gElCanvas.height = (img.height*gElCanvas.width/img.width)
-            // renderCanvas()
+        if (gElCanvas.width / gElCanvas.height !== img.width / img.height) {
+            gElCanvas.height = (img.height * gElCanvas.width / img.width)
         }
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+        gCtx.font = size + 'px Impact';
+        const pos = { x: gElCanvas.width / 8, y: gElCanvas.height / 8 }
+        gCtx.textBaseline = 'middle';
+        gCtx.textAlign = align;
+        gCtx.lineWidth = 2;
+        gCtx.fillStyle = color;
+        gCtx.fillText(txt, pos.x, pos.y)
+        gCtx.strokeStyle = 'black';
+        gCtx.strokeText(txt, pos.x, pos.y);
     };
-}
-
-function draw(ev) {
-    // const offsetX = ev.offsetX;
-    // const offsetY = ev.offsetY;
-    const { offsetX, offsetY } = ev
-
-    drawText('TEXT', offsetX, offsetY);
-
-}
-
-function drawText(txt, x, y) {
-    gCtx.beginPath()
-    gCtx.textBaseline = 'middle';
-    gCtx.textAlign = 'center';
-    gCtx.lineWidth = 3;
-    gCtx.font = '40px Impact';
-    gCtx.fillStyle = 'white';
-    gCtx.fillText(txt, x, y);
-    gCtx.strokeStyle = 'black';
-    gCtx.strokeText(txt, x, y);
     gCtx.closePath()
 }
+

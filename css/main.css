@@ -8,16 +8,23 @@ body {
     align-items: center;
     min-height: 100vh;
     justify-content: center;
-  }
-  
-  .canvas-container {
-    width: 60vw;
-    height: 80vh;
-  }
-  
-  @media screen and (max-width: 500px) {
+}
+
+.meme-container {
+    display: flex;
+    justify-content: center;
+    width: 100%
+}
+
+/* .meme-canvas{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 100px);
+} */
+
+
+@media screen and (max-width: 500px) {
     .meme-canvas {
-      width: 80vw;
+        width: 80vw;
     }
-  }
-  
+}
