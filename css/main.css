@@ -10,6 +10,22 @@ body {
     justify-content: center;
 }
 
+.modal{
+    background-color: #111;
+    padding: 10px;
+    position: absolute;
+    top: 0px;
+    left: 150%;
+    height: 80vh;
+    min-width: 300px;
+    text-align: center; 
+}
+
+.modal.open {
+    left: 50%;
+    transition: left .5s;
+}
+
 .modal-container {
     max-width: none;
     height: 100%;

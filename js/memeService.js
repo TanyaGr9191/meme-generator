@@ -36,15 +36,30 @@ function getImg() {
 }
 
 function getImgUrlById(imgId) {
-    const image = gImgs.find(({ id }) => id === imgId );
+    const image = gImgs.find(({ id }) => id === imgId);
     return image.url
 }
 
-function setLineTxt(text){
+function setLineTxt(text) {
     const [topLine] = gMeme.lines
     topLine.txt = text
     renderCanvas()
 }
 
-function setImg(){
+function setImg(imgId) {
+    gMeme.selectedImgId = imgId
+    renderCanvas()
+}
+
+function setLineColor(color){
+    const [topLine] = gMeme.lines
+    topLine.color = color
+    renderCanvas()
+}
+
+function setTextSize(size){
+    console.log('size', size)
+    const [topLine] = gMeme.lines
+    topLine.size = size
+    renderCanvas()
 }

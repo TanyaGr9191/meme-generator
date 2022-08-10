@@ -10,6 +10,7 @@ function onInit() {
     console.log('ctx', gCtx);
 
     addRecizeListener()
+    renderGallery()
     // resizeCanvas()
     renderCanvas()
 }
@@ -34,10 +35,9 @@ function renderMeme() {
     drawMeme(imgUrl, txt, size, align, color)
 }
 
-
-function resizeCanvas(img) {
-    var elContainer = document.querySelector('.meme-container');
-    gElCanvas.width = elContainer.offsetWidth - 100;
+function resizeCanvas() {
+    var elContainer = document.querySelector('.meme-container')
+    gElCanvas.width = elContainer.offsetWidth - 100
 }
 
 function clearCanvas() {
@@ -52,8 +52,8 @@ function onAddInput(ev) {
     const elTxt = document.querySelector('[name=memeText]').value
     setLineTxt(elTxt)
     document.querySelector('[name=memeText]').value = ''
-}
-
-function onCloseModal() {
-    document.querySelector('.modal').classList.remove('open')
+    const elColor = document.querySelector('[name=textColor]').value
+    setLineColor(elColor)
+    const elSize = document.querySelector('[name=textSize]').value
+    setTextSize(elSize)
 }

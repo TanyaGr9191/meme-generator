@@ -10,8 +10,6 @@
 </head>
 
 <body onload="onInit()">
-
-
     <!-- Meme modal -->
     <div class="modal">
     <div class="modal-container">
@@ -19,16 +17,24 @@
             <h2>Create your Meme!</h2>
             <canvas class="meme-canvas" width="500" height="500" style="outline:5px solid rgb(0, 3, 0)"></canvas>
             
-            <form onsubmit="onAddInput(event)">
+            <form id="frmSettings" onsubmit="onAddInput(event)">
                 <input type="text" name="memeText" placeholder="First line of text" />
-                <!-- <input type="color" name="textColor" /> -->
                 <button>Go</button>
                 <!-- <button type="reset">Reset</button> -->
             </form>
+            <input type="color" id="textColor" name="textColor" form="frmSettings" value="#ffff00" />
+            <label>
+                Text Size:
+                <input type="range" name="textSize" min="0" max="70" value="40" class="text-size" form="frmSettings"/>
+                    <!-- onchange="this.title=this.value;onSetTextSize({textSize: this.value})"  -->
+            </label>
         </div>
         <button onclick="onCloseModal()">Close</button>
       </div>
       </div>
+    <h1>Gallery Page</h1>
+    <section class="images-container"></section>
+
 
     <script src='js/gallery/galleryController.js'></script>
     <script src='js/memeService.js'></script>
