@@ -6,12 +6,16 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Page Title</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/main.css'>
 </head>
 
-<body>
+<body onload="onInit()">
+    <div class="meme-container">
+        <canvas class="meme-canvas" width="500" height="500" style="outline:5px solid rgb(0, 3, 0)" onclick="draw(event)"></canvas>
+    </div>
 
+    <script src='js/memeController.js'></script>
+    <script src='js/main.js'></script>
 </body>
 
 </html>
