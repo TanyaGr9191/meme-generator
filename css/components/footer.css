@@ -1,0 +1,60 @@
+
+/* footer */
+footer {
+    flex-direction: column;
+    box-shadow: inset 0 1px 0 #e1e0e0;
+    background-color: #f8f8f8;
+    height: 315px;
+
+}
+
+.main-footer-container {
+    flex: 1;
+}
+
+.line {
+    flex: 1;
+    align-items: center;
+}
+
+.footer-logo {
+    color: black;
+}
+
+.main-footer-container .social-buttons>button:not(:last-child) {
+    margin-right: 20px;
+}
+
+.copy-rights {
+    color: #a6a6a6;
+    font-size: 0.81em;
+}
+
+.pixel {
+    color: #939292;
+    font-weight: 700;
+}
+
+.btn {
+    cursor: pointer;
+    border: none;
+    height: 40px;
+    width: 40px;
+    background-color: #e5e5e5;
+}
+
+.facebook:hover {
+    background-color: #516fad;
+}
+
+.twitter:hover {
+    background-color: #00b6f1;
+}
+
+.be:hover {
+    background-color: #6e4be5;
+}
+
+.dribble:hover {
+    background-color: #ea4c89;
+}

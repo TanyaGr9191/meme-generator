@@ -1,0 +1,17 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: lato;
+    color: var(--clr1);
+    line-height: 1.25;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: var(--clr1);
+    min-height: 100vh;
+    font-size: 1rem;
+}

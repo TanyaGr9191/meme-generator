@@ -1,0 +1,27 @@
+.main-header {
+    width: 100%;
+    padding: 0 10px;
+    min-height: 100px;
+    background-color: #ff7f00;;
+}
+
+.main-header-container {
+    width: 100%;
+}
+
+.logo {
+    font-family: lato;
+    font-size: 2.5em;
+    color: var(--clr4);
+    letter-spacing: normal;
+    font-weight: 500;
+}
+
+.memegen {
+    letter-spacing: -0.05rem;
+}
+
+
+.nav-list:hover {
+    color: var(--clr5);
+}

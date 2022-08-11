@@ -63,8 +63,6 @@ function onAddInput(ev) {
         document.querySelector('[name=memeText2]').value = ''
     }
 
-    console.log('elTxt',elTxt)
-    console.log('elLineId',elLineId)
     setLineTxt(elTxt, elLineId)
 }
 
