@@ -3,25 +3,22 @@
 function renderGallery() {
     const images = getImg()
     const strHtmls = images.map(image => `
-    <article class="image-preview">
-    <img src="${image.url}" alt="" onclick="onImgSelect(${image.id})">
+    <article class="gallery-item">
+    <img class="gallery-image" src="${image.url}" alt="" onclick="onImgSelect(event,${image.id})">
     </article> 
     `
     ).join('')
-
-    document.querySelector('.images-container').innerHTML = strHtmls
+    
+    document.querySelector('.gallery-container ').innerHTML = strHtmls
 }
 
-function onImgSelect(imgId){
-    console.log('imgId',imgId)
-    const image = getImgUrlById(imgId)
-    console.log('image',image)
+function onImgSelect(ev,imgId){
     setImg(imgId)
-    const elModal = document.querySelector('.modal')
-    elModal.classList.add('open')
+    toggleModal()
 }
 
-function onCloseModal() {
-    document.querySelector('.modal').classList.remove('open')
+function toggleModal(){
+    document.querySelector('.modal-body').classList.toggle('open')
+    resetCanvas()
 }
 

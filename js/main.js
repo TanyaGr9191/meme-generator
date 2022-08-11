@@ -1,7 +1,7 @@
 'use-strict'
 
-var gElCanvas;
-var gCtx;
+var gElCanvas
+var gCtx
 
 
 function onInit() {
@@ -28,11 +28,8 @@ function renderCanvas() {
 }
 
 function renderMeme() {
-    const meme = getMeme()
-    const imgUrl = getImgUrlById(meme.selectedImgId)
-    const [topLine] = meme.lines
-    const { txt, size, align, color } = topLine
-    drawMeme(imgUrl, txt, size, align, color)
+
+    drawMeme()
 }
 
 function resizeCanvas() {
@@ -49,11 +46,34 @@ function clearCanvas() {
 function onAddInput(ev) {
     ev.preventDefault()
 
-    const elTxt = document.querySelector('[name=memeText]').value
-    setLineTxt(elTxt)
-    document.querySelector('[name=memeText]').value = ''
+    let elTxt = ''
+    let elLineId = ''
+    const [topLine, bottomLine] = gMeme.lines
+
+    const elTxt1 = document.querySelector('[name=memeText1]').value
+    const elTxt2 = document.querySelector('[name=memeText2]').value
+
+    if (ev.target.id === 'input1') {
+        elTxt = elTxt1
+        elLineId = topLine.lineId
+        document.querySelector('[name=memeText1]').value = ''
+    } else {
+        elTxt = elTxt2
+        elLineId = bottomLine.lineId
+        document.querySelector('[name=memeText2]').value = ''
+    }
+
+    console.log('elTxt',elTxt)
+    console.log('elLineId',elLineId)
+    setLineTxt(elTxt, elLineId)
+}
+
+function onSetColor(ev){
     const elColor = document.querySelector('[name=textColor]').value
     setLineColor(elColor)
+}
+
+function onSetSize(ev){
     const elSize = document.querySelector('[name=textSize]').value
-    setTextSize(elSize)
+    setTextSize(+elSize)
 }

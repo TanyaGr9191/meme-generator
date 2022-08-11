@@ -10,30 +10,36 @@
 </head>
 
 <body onload="onInit()">
-    <!-- Meme modal -->
-    <div class="modal">
-    <div class="modal-container">
-        <div class="modal-content">
-            <h2>Create your Meme!</h2>
-            <canvas class="meme-canvas" width="500" height="500" style="outline:5px solid rgb(0, 3, 0)"></canvas>
-            
-            <form id="frmSettings" onsubmit="onAddInput(event)">
-                <input type="text" name="memeText" placeholder="First line of text" />
-                <button>Go</button>
-                <!-- <button type="reset">Reset</button> -->
-            </form>
-            <input type="color" id="textColor" name="textColor" form="frmSettings" value="#ffff00" />
-            <label>
-                Text Size:
-                <input type="range" name="textSize" min="0" max="70" value="40" class="text-size" form="frmSettings"/>
-                    <!-- onchange="this.title=this.value;onSetTextSize({textSize: this.value})"  -->
-            </label>
-        </div>
-        <button onclick="onCloseModal()">Close</button>
-      </div>
-      </div>
     <h1>Gallery Page</h1>
-    <section class="images-container"></section>
+    <div class="gallery flex">
+        <div class="gallery-container flex justify-center" ></div>
+        <section class="gallery-content flex "></section>
+    </div>
+
+    <!-- Meme modal -->
+    <div class="modal-body" id="canvasModal">
+        <div class="modal-container">
+            <div class="modal-content">
+                <h2>Create your Meme!</h2>
+                <canvas class="meme-canvas" width="500" height="500" style="outline:5px solid rgb(0, 3, 0)"></canvas>
+
+                <form id="input1" onsubmit="onAddInput(event)">
+                    <input type="text" id="line1" name="memeText1" placeholder="Top text" autofocus/>
+                    <button>Go</button>
+                </form>
+                <form id="input2" onsubmit="onAddInput(event)">
+                    <input type="text" id="line2" name="memeText2" placeholder="Bottom text" autofocus/>
+                    <button>Go</button>
+                </form>
+                <input type="color" id="textColor" name="textColor" value="#ffff00" onchange="onSetColor(event)"/>
+                <label>
+                    Text Size:
+                    <input type="range" name="textSize" min="0" max="70" value="40" class="text-size" onchange="onSetSize(event)" />
+                </label>
+            </div>
+            <button class="close-modal" onclick="toggleModal()">X</button>
+        </div>
+    </div>
 
 
     <script src='js/gallery/galleryController.js'></script>

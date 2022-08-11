@@ -1,4 +1,5 @@
 'use-strict'
+var gLineId
 
 var gKeywordSearchCountMap = {
     'funny': 12, 'cat': 16, 'dog': 0, 'puppy': 0, 'baby': 2,
@@ -12,6 +13,19 @@ var gImgs = [
     { id: 3, url: 'img/3.jpg', keywords: ['baby', 'dog'] },
     { id: 4, url: 'img/4.jpg', keywords: ['cat', 'sleep'] },
     { id: 5, url: 'img/5.jpg', keywords: ['baby', 'success'] },
+    { id: 6, url: 'img/6.jpg', keywords: ['baby', 'success'] },
+    { id: 7, url: 'img/7.jpg', keywords: ['baby', 'success'] },
+    { id: 8, url: 'img/8.jpg', keywords: ['baby', 'success'] },
+    { id: 9, url: 'img/9.jpg', keywords: ['baby', 'success'] },
+    { id: 10, url: 'img/10.jpg', keywords: ['baby', 'success'] },
+    { id: 11, url: 'img/11.jpg', keywords: ['baby', 'success'] },
+    { id: 12, url: 'img/12.jpg', keywords: ['baby', 'success'] },
+    { id: 13, url: 'img/13.jpg', keywords: ['baby', 'success'] },
+    { id: 14, url: 'img/14.jpg', keywords: ['baby', 'success'] },
+    { id: 15, url: 'img/15.jpg', keywords: ['baby', 'success'] },
+    { id: 16, url: 'img/16.jpg', keywords: ['baby', 'success'] },
+    { id: 17, url: 'img/17.jpg', keywords: ['baby', 'success'] },
+    { id: 18, url: 'img/18.jpg', keywords: ['baby', 'success'] },
 ]
 
 var gMeme = {
@@ -19,10 +33,20 @@ var gMeme = {
     selectedLineIdx: 0,
     lines: [
         {
-            txt: 'I sometimes eat Falafel',
+            lineId: 'line1',
+            txt: '',
             size: 40,
-            align: 'left',
-            color: 'red'
+            align: 'center',
+            color: 'white',
+            isText: false,
+        },
+        {
+            lineId: 'line2',
+            txt: '',
+            size: 40,
+            align: 'center',
+            color: 'white',
+            isText: false,
         }
     ]
 }
@@ -40,9 +64,12 @@ function getImgUrlById(imgId) {
     return image.url
 }
 
-function setLineTxt(text) {
-    const [topLine] = gMeme.lines
-    topLine.txt = text
+function setLineTxt(text, id) {
+    const [topLine, bottomLine] = gMeme.lines
+    if(id === topLine.lineId) topLine.txt = text
+    else bottomLine.txt = text
+    console.log('id',id)
+    gLineId = id
     renderCanvas()
 }
 
@@ -52,14 +79,25 @@ function setImg(imgId) {
 }
 
 function setLineColor(color){
-    const [topLine] = gMeme.lines
+    const [topLine, bottomLine] = gMeme.lines
     topLine.color = color
+    bottomLine.color = color
     renderCanvas()
 }
 
 function setTextSize(size){
-    console.log('size', size)
-    const [topLine] = gMeme.lines
+    const [topLine, bottomLine] = gMeme.lines
     topLine.size = size
+    bottomLine.size = size
     renderCanvas()
+}
+
+
+function resetCanvas(){
+    const [topLine, bottomLine] = gMeme.lines
+    topLine.txt = ''
+    bottomLine.txt = ''
+    topLine.isText = false
+    bottomLine.isText = false
+    gLineId = undefined
 }
