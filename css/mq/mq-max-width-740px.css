@@ -1,0 +1,222 @@
+/* MOBILE ONLY */
+
+
+@media (max-width: 740px) {
+
+    /* MOBILE ONLY GALLERY*/
+
+
+    .gallery-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(9, 1fr);
+    }
+
+    body.menu-opened .main-nav {
+        box-shadow: 0px 20px 17px rgb(255 255 255 / 90%);
+        transform: translateX(0);
+    }
+
+    .main-header {
+        min-height: 130px;
+    }
+
+    .container {
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .bar1,
+    .bar2,
+    .bar3 {
+        width: 35px;
+        height: 5px;
+        background-color: var(--clr1);
+        margin: 6px 0;
+        transition: 0.4s;
+    }
+
+    .change .bar1 {
+        -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+        transform: rotate(-45deg) translate(-9px, 6px);
+    }
+
+    .change .bar2 {
+        opacity: 0;
+    }
+
+    .change .bar3 {
+        -webkit-transform: rotate(45deg) translate(-8px, -8px);
+        transform: rotate(45deg) translate(-8px, -8px);
+    }
+
+    .main-nav {
+        position: fixed;
+        max-height: 100vh;
+        flex-direction: column;
+        width: 100%;
+        top: 100px;
+        right: 0;
+        z-index: 7;
+        transition: transform .6s, box-shadow .6s;
+        transform: translateX(100%)
+    }
+
+    .nav-list {
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        border: none;
+        cursor: pointer;
+        font-weight: 700;
+        text-align: center;
+        color: var(--clr2);
+    }
+
+
+    .btn-gallery {
+        border: none;
+    }
+
+    .btn-im-flexible {
+        border: none;
+        cursor: auto;
+    }
+
+
+
+    /* MOBILE ONLY modal */
+
+    .modal-body {
+        margin: 0;
+        width: 100%;
+
+        background-color: var(--clr1);
+        padding: 10px;
+        position: fixed;
+        top: -150%;
+        height: 100%;
+        flex: 1;
+    }
+
+    .modal-body.open {
+        top: 14%;
+        transition: top .5s;
+    }
+
+    .modal-container {
+        position: relative;
+        display: flex;
+        flex: 1;
+        background-color: rgb(209, 207, 207);
+        min-height: 100%;
+        border: none;
+        border-radius: 0;
+        padding: 20px;
+    }
+
+    .modal-content {
+        min-height: 100%;
+        text-align: center;
+        flex: 1;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .canvas-container {
+        width: 25%;
+    }
+
+    .meme-col {
+        flex: 1;
+        padding: 0 70px;
+        align-items: center;
+        flex-direction: column;
+        padding-inline-end: 1.875rem;
+        padding-inline-start: 1.875rem;
+    }
+
+    .row {
+        display: flex;
+        width: 65%;
+        flex-direction: column;
+        padding: 0.5em;
+    }
+
+    input {
+        border: none;
+        text-align: center;
+        border-radius: 0.75em;
+    }
+
+    .text-input {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    button.btn {
+        border: none;
+        background-color: white;
+        border-radius: 1em;
+    }
+
+    .btn-meme {
+        background-color: #fe6e20;
+        box-shadow: inset -1px 3px 8px 5px #fb9623, 2px 5px 16px 0px #4e5053, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+        font-weight: 600;
+        border-radius: 20px;
+        border: black solid;
+        font-size: 1.1rem;
+        padding: 0.7em;
+        cursor: pointer;
+    }
+
+    a.user-msg{
+        color: black;
+        text-decoration: none;
+    }
+
+    .link {
+        color: black;
+        text-decoration: none;
+    }
+
+    .close-modal {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        width: 75px;
+        height: 75px;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        font-size: x-large;
+        font-weight: 800;
+        transition: top .9s;
+    }
+
+    /* MOBILE ONLY MODAL GALLERY*/
+
+    .modal-gallery {
+        margin: 0;
+        width: 100%;
+
+        background-color: var(--clr1);
+        padding: 10px;
+        position: fixed;
+        top: -150%;
+        height: 80vh;
+        flex: 1;
+    }
+
+    .modal-gallery.open-gallery {
+        top: 14%;
+        transition: top .5s;
+    }
+
+    label.nav-list{
+    padding: 0;
+    }
+
+}

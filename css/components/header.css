@@ -18,10 +18,15 @@
 }
 
 .memegen {
-    letter-spacing: -0.05rem;
+    width: 25%;
+}
+
+.logo-img{
+    width: 75%;
 }
 
 
 .nav-list:hover {
     color: var(--clr5);
 }
+

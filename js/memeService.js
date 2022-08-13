@@ -1,6 +1,7 @@
 'use-strict'
 var gLineId
 
+
 var gKeywordSearchCountMap = {
     'funny': 12, 'cat': 16, 'dog': 0, 'puppy': 0, 'baby': 2,
     'happy': 0, 'crazy': 0, 'sarcastic': 0, 'sad': 0, 'animal': 0,
@@ -38,7 +39,9 @@ var gMeme = {
             size: 40,
             align: 'center',
             color: 'white',
+            stroke: 'black',
             isText: false,
+            linePos: { coordX: 1, coordY: 1 }
         },
         {
             lineId: 'line2',
@@ -46,7 +49,9 @@ var gMeme = {
             size: 40,
             align: 'center',
             color: 'white',
+            stroke: 'black',
             isText: false,
+            linePos: { coordX: 1, coordY: 1 }
         }
     ]
 }
@@ -64,40 +69,148 @@ function getImgUrlById(imgId) {
     return image.url
 }
 
-function setLineTxt(text, id) {
-    const [topLine, bottomLine] = gMeme.lines
-    if(id === topLine.lineId) topLine.txt = text
-    else bottomLine.txt = text
-    console.log('id',id)
-    gLineId = id
-    renderCanvas()
-}
 
 function setImg(imgId) {
     gMeme.selectedImgId = imgId
-    renderCanvas()
 }
 
-function setLineColor(color){
+function setStrokeColor(color) {
+    const [topLine, bottomLine] = gMeme.lines
+    topLine.stroke = color
+    bottomLine.stroke = color
+}
+
+function setLineColor(color) {
     const [topLine, bottomLine] = gMeme.lines
     topLine.color = color
     bottomLine.color = color
-    renderCanvas()
 }
 
-function setTextSize(size){
+function increaseFont() {
     const [topLine, bottomLine] = gMeme.lines
-    topLine.size = size
-    bottomLine.size = size
-    renderCanvas()
+    topLine.size++
+    bottomLine.size++
 }
 
+function decreaseFont() {
+    const [topLine, bottomLine] = gMeme.lines
+    topLine.size--
+    bottomLine.size--
+}
 
-function resetCanvas(){
+function switchLines() {
+    let tempLine = gMeme.lines[0]
+    gMeme.lines[0] = gMeme.lines[1]
+    gMeme.lines[1] = tempLine
+}
+
+function removeText() {
+    resetCanvas()
+}
+
+function resetCanvas() {
     const [topLine, bottomLine] = gMeme.lines
     topLine.txt = ''
     bottomLine.txt = ''
+    topLine.size = 40
+    bottomLine.size = 40
+    topLine.color = 'white'
+    bottomLine.color = 'white'
+    topLine.stroke = 'black'
+    bottomLine.stroke = 'black'
     topLine.isText = false
     bottomLine.isText = false
     gLineId = undefined
+    gUploadedImg = undefined
 }
+
+function addInput(text1, text2) {
+    const [topLine, bottomLine] = gMeme.lines
+
+    if (text1 !== '' && text2 !== '') {
+        setLineTxt(text1, topLine.lineId)
+        setLineTxt(text2, bottomLine.lineId)
+    } else if (text1 !== '') {
+        setLineTxt(text1, topLine.lineId)
+    } else if (text2 !== '') {
+        setLineTxt(text2, bottomLine.lineId)
+    }
+}
+
+function setLineTxt(text, id) {
+    const [topLine, bottomLine] = gMeme.lines
+    if (id === topLine.lineId) topLine.txt = text
+    else bottomLine.txt = text
+    gLineId = id
+}
+
+function alignRight() {
+    const [topLine, bottomLine] = gMeme.lines
+    let { coordX, coordY } = topLine.linePos
+    coordX = 3;
+    topLine.linePos = { coordX, coordY }
+    bottomLine.linePos = { coordX, coordY }
+}
+
+function alignCenter() {
+    const [topLine, bottomLine] = gMeme.lines
+    let { coordX, coordY } = topLine.linePos
+    coordX = 1;
+    topLine.linePos = { coordX, coordY }
+    bottomLine.linePos = { coordX, coordY }
+}
+
+function alignLeft() {
+    const [topLine, bottomLine] = gMeme.lines
+    let { coordX, coordY } = topLine.linePos
+    coordX = 0.6;
+    topLine.linePos = { coordX, coordY }
+    bottomLine.linePos = { coordX, coordY }
+}
+
+function setInput() {
+    resetCanvas()
+
+    let text1 = ''
+    let text2 = ''
+
+    const numOfLines = getRandomIntInclusive(1, 2)
+
+    if (numOfLines === 1) {
+        text1 = makeStr()
+    }
+    else {
+        text1 = makeStr()
+        text2 = makeStr()
+    }
+
+    addInput(text1, text2)
+}
+
+function setTextFontSize() {
+    let size = getRandomIntInclusive(15, 65)
+    const [topLine, bottomLine] = gMeme.lines
+    topLine.size = size
+    bottomLine.size = size
+}
+
+function saveMeme(name, link, data) {
+    link.data = data
+    link.name = name + '.jpg'
+    gCurrMeme.url = gMeme.selectedImgId + '.jpg'
+    gCurrMeme.name = name
+    gCurrMeme.memeImg = gMeme
+    gCurrMeme.link = link
+    gMemes.push(gCurrMeme)
+    console.log('gCurrMeme', gCurrMeme);
+    const savesMemes = loadFromStorage('meme')
+
+    saveToStorage('meme', [gCurrMeme,...gMemes])
+}
+
+
+function downloadCanvas(link, data) {
+    link.href = data;
+    link.download = 'my-canvas';
+}
+

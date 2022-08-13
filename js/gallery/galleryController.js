@@ -13,12 +13,21 @@ function renderGallery() {
 }
 
 function onImgSelect(ev,imgId){
+    resetCanvas()
     setImg(imgId)
     toggleModal()
+    renderCanvas()
 }
 
 function toggleModal(){
     document.querySelector('.modal-body').classList.toggle('open')
-    resetCanvas()
 }
 
+function toggleMemeGallery(){
+    document.querySelector('.modal-gallery').classList.toggle('open-gallery')
+}
+
+function oncloseModal(){
+    document.querySelector('.modal-body').classList.remove('open')
+    document.querySelector('.modal-gallery').classList.remove('open-gallery')
+}

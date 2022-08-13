@@ -72,3 +72,7 @@
     padding-right: 0.3125rem;
     text-align: center;
 }
+
+.hidden{
+    display: none;
+}
