@@ -21,6 +21,7 @@
     .nav-list {
         display: flex;
         align-items: center;
+        justify-content: center;
         width: 8.25rem;
         height: 8.25rem;
         background-color: transparent;
