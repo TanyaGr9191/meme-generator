@@ -111,10 +111,11 @@
     }
 
     input {
-        border: black solid;
+        margin-top: 20px;
+        border: none;
         border-radius: 0.75em;
         text-align: start;
-        padding: 10px;
+        padding: 20px;
     }
 
     .text-input {
@@ -125,8 +126,12 @@
     button.btn {
         border: none;
         border-radius: 1em;
-        margin-left: 0.5em;;
-        margin-right: 0.5em;;
+        margin-left: 0.5em;
+        margin-right: 0.5em;
+    }
+
+    .btn-color {
+        position: relative;
     }
 
     .btn-meme {
@@ -142,10 +147,10 @@
 
     section.row {
         display: flex;
-        flex:1;
+        flex: 1;
     }
 
-    .margin{
+    .margin {
         margin-left: 0.5em;
         margin-right: 0.5em;
     }
@@ -155,8 +160,9 @@
         justify-content: center;
         margin-top: 1em;
         margin-bottom: 1em;
-        flex:1;
+        flex: 1;
     }
+
 
     .user-msg {
         color: black;
@@ -190,5 +196,47 @@
         transition: top .9s;
     }
 
+    .sticker {
+        display: none;
+    }
+
+    .smiley {
+        vertical-align: middle;
+        width: 40px;
+    }
+
+    /* Slideshow container */
+    .sticker-container {
+        width: 50%;
+        background-color: white;
+        height: 60px;
+        border-radius: 1em;
+        margin-bottom: 20px;
+        margin: auto;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Next & previous buttons */
+    .prev,
+    .next {
+        cursor: pointer;
+        top: 50%;
+        width: auto;
+        padding: 16px;
+        color: black;
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+        background-color: transparent;
+    }
+
+    /* Position the "next button" to the right */
+    .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+    }
 
 }

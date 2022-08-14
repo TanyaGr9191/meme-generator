@@ -3,23 +3,19 @@
 var gElCanvas
 var gCtx
 var gUploadedImg
+var gStartPos
+const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 
 function onInit() {
     gElCanvas = document.querySelector('.meme-canvas')
     gCtx = gElCanvas.getContext('2d')
-    console.log('ctx', gCtx);
+    console.log('ctx', gCtx)
 
-    addRecizeListener()
+
+    addListeners()
     renderGallery()
-    // renderMemeGallery()
     renderCanvas()
-}
-
-function addRecizeListener() {
-    window.addEventListener('resize', (ev) => {
-        ev.preventDefault()
-        renderCanvas()
-    })
+    chooseStickers()
 }
 
 function onAddInput(ev) {
@@ -39,6 +35,7 @@ function submitForms() {
 }
 
 function onSetColor(elColor) {
+    console.log('elColor',elColor)
     setLineColor(elColor)
     renderCanvas()
 }
@@ -146,7 +143,7 @@ function drawLoadedImg(img) {
     if (gElCanvas.width / gElCanvas.height !== img.width / img.height) {
         gElCanvas.height = (img.height * gElCanvas.width / img.width)
     }
-    if (img){
+    if (img) {
         gUploadedImg = img
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
     }
@@ -154,10 +151,6 @@ function drawLoadedImg(img) {
 
 function onImgInput(ev) {
     loadImageFromInput(ev, drawLoadedImg)
-}
-
-function onOpenMemes(){
-    return window.location = 'memeGallery.html'
 }
 
 function onMenu(elMenu) {
@@ -168,23 +161,22 @@ function toggleMenu() {
     document.body.classList.toggle('menu-opened');
 }
 
-
-function onImgSelect(ev,imgId){
+function onImgSelect(ev, imgId) {
     resetCanvas()
     setImg(imgId)
     toggleModal()
     renderCanvas()
 }
 
-function toggleModal(){
+function toggleModal() {
     document.querySelector('.modal-body').classList.toggle('open')
 }
 
-function toggleMemeGallery(){
+function toggleMemeGallery() {
     document.querySelector('.modal-gallery').classList.toggle('open-gallery')
 }
 
-function oncloseModal(){
+function oncloseModal() {
     document.querySelector('.modal-body').classList.remove('open')
     document.querySelector('.modal-gallery').classList.remove('open-gallery')
 }
@@ -197,20 +189,21 @@ function renderGallery() {
     </article> 
     `
     ).join('')
-    
+
     document.querySelector('.gallery-container ').innerHTML = strHtmls
 }
 
 function renderCanvas() {
-    renderMeme()
+    drawImage()
+    drawText()
 }
 
-function renderMeme() {
-    drawMeme()
+function test(params) {
+    timeout
 }
 
 function resizeCanvas() {
-    var elContainer = document.querySelector('.meme-container')
+    var elContainer = document.querySelector('.meme-canvas')
     gElCanvas.width = elContainer.offsetWidth
     gElCanvas.height = elContainer.offsetHeight
 }
@@ -219,4 +212,33 @@ function clearCanvas() {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
     // You may clear part of the canvas
     // gCtx.clearRect(0, 0, gElCanvas.width / 2, gElCanvas.height / 2);
+}
+
+
+function addListeners() {
+    window.addEventListener('resize', (ev) => {
+        ev.preventDefault()
+        resizeCanvas()
+        renderCanvas()
+    })
+}
+
+var gDraggedEl = null
+
+function drag(ev) {
+    gDraggedEl = ev.target.currentSrc
+}
+
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drop(ev) {
+    let posX = ev.offsetX - gElCanvas.offsetLeft;
+    let posY = ev.offsetY - gElCanvas.offsetTop;
+    const imggg = new Image()
+
+    imggg.src = gDraggedEl
+
+    gCtx.drawImage(imggg, posX, posY, 40, 40)
 }

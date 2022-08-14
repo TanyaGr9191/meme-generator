@@ -24,7 +24,6 @@
                 <input type="file" class="hidden" id="file-upload" name="image"
                     onchange="onImgInput(event);toggleModal()" />
                 <button class="nav-list btn-gallery" onclick="oncloseModal()">Gallery</button>
-                <button class="nav-list btn-gallery" onclick="onOpenMemes()">Memes</button>
             </nav>
             <div class="container" onclick="onMenu(this); toggleMenu()">
                 <div class="bar1"></div>
@@ -46,7 +45,7 @@
         <div class="modal-container">
             <section class="modal-content flex">
                 <div class="canvas-container flex justify-center">
-                    <canvas class="meme-canvas" width="600" height="600"></canvas>
+                    <canvas class="meme-canvas" width="500" height="500" ondrop="drop(event)" ondragover="allowDrop(event)"></canvas>
                 </div>
                 <div class="meme-col flex ">
                     <form class="row" id="input1" onsubmit="onAddInput(event)">
@@ -83,17 +82,34 @@
                                     src="./icons/paint-board-and-brush.png" alt="" width="100%" form="">
                                 <input class="color" type="color" id="textColor" name="textColor" value="#ffff00"
                                     onchange="onSetColor(this.value)"
-                                    style="opacity:0; position:absolute; left:0;top:0;width:100%" /></button>
-                            <button class="btn btn-color" name="strokeColor"><img src="./icons/text-stroke.png" alt=""
+                                    style="opacity:0; position:absolute; left:0;top:-15px;width:100%" />
+                                </button>
+                            <button type="button" class="btn btn-color" name="strokeColor"><img src="./icons/text-stroke.png" alt=""
                                     width="100%">
                                 <input class="color" type="color" id="strokeColor" name="strokeColor" value="#ffff00"
                                     onchange="onTextStroke(this.value)"
-                                    style="opacity:0; position:absolute; left:0;top:0;width:100%" /></button>
+                                    style="opacity:0; position:absolute;left:0;top:-15px;width:100%" /></button>
                         </div>
+
+                        <div class="sticker-container flex btn-row1">
+                            <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
+                            <div class="sticker">
+                                <img class="smiley" src="./stickers/1.svg"  draggable="true" ondragstart="drag(event)">
+                            </div>
+
+                            <div class="sticker">
+                                <img class="smiley" src="./stickers/2.svg"  draggable="true" ondragstart="drag(event)">
+                            </div>
+
+                            <div class="sticker">
+                                <img class="smiley" src="./stickers/3.svg"  draggable="true" ondragstart="drag(event)">
+                            </div>
+
+                            <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
+                        </div>
+
                         <div class="btn-row1">
-                            <span class="margin" onclick="onUploadImg()"><a class="link" href="#">Share</a></span>
-                            <span class="margin"><a class="link" href="#"
-                                    onclick="onSaveMeme(this)">Save</a></span>
+                            <span class="margin share-container " onclick="onUploadImg()"><a class="link" href="#">Share</a></span>
                             <span class="margin"><a class="link" href="#" onclick="onDownloadCanvas(this)"
                                     download="cool-canvas">Download</a></span>
                         </div>

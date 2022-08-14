@@ -93,19 +93,14 @@
         cursor: auto;
     }
 
-
-
     /* MOBILE ONLY modal */
 
     .modal-body {
         margin: 0;
-        width: 100%;
         position: fixed;
         background-color: var(--clr1);
         padding: 10px;
         top: -150%;
-        height: 100%;
-        flex: 1;
     }
 
     .modal-body.open {
@@ -123,15 +118,9 @@
     }
 
     .modal-content {
-        min-height: 100%;
         text-align: center;
-        flex: 1;
         align-items: center;
         flex-direction: column;
-    }
-
-    .canvas-container {
-        width: 10%;
     }
 
     .meme-col {
@@ -150,7 +139,7 @@
     }
 
     input {
-        border: black solid;
+        margin-top: 20px;
         border-radius: 0.75em;
         text-align: start;
         padding: 10px;
@@ -165,9 +154,7 @@
         border: none;
         border-radius: 1em;
         margin-left: 0.2em;
-        ;
         margin-right: 0.2em;
-        ;
     }
 
     .btn-meme {
@@ -229,6 +216,49 @@
         font-size: x-large;
         font-weight: 800;
         transition: top .9s;
+    }
+
+    .sticker {
+        display: none;
+    }
+
+    .smiley {
+        vertical-align: middle;
+        width: 40px;
+    }
+
+    /* Slideshow container */
+    .sticker-container {
+        width: 50%;
+        background-color: white;
+        height: 60px;
+        border-radius: 1em;
+        margin-bottom: 20px;
+        margin: auto;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Next & previous buttons */
+    .prev,
+    .next {
+        cursor: pointer;
+        top: 50%;
+        width: auto;
+        padding: 16px;
+        color: black;
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+        background-color: transparent;
+    }
+
+    /* Position the "next button" to the right */
+    .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
     }
 
 }

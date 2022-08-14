@@ -42,7 +42,6 @@ const gImgs = [
     { id: 22, url: 'img/22.jpg', keywords: ['baby', 'success'] },
     { id: 23, url: 'img/23.jpg', keywords: ['baby', 'success'] },
     { id: 24, url: 'img/24.jpg', keywords: ['baby', 'success'] },
-    { id: 25, url: 'img/25.jpg', keywords: ['baby', 'success'] },
 ]
 
 var gMeme = {
@@ -160,7 +159,7 @@ function setLineTxt(text, id) {
     gLineId = id
 }
 
-function alignRight() {
+function alignLeft() {
     const [topLine, bottomLine] = gMeme.lines
     let { coordX, coordY } = topLine.linePos
     coordX = 3;
@@ -176,7 +175,7 @@ function alignCenter() {
     bottomLine.linePos = { coordX, coordY }
 }
 
-function alignLeft() {
+function alignRight() {
     const [topLine, bottomLine] = gMeme.lines
     let { coordX, coordY } = topLine.linePos
     coordX = 0.6;
@@ -218,12 +217,10 @@ function saveMeme(name, link, data) {
     gCurrMeme.memeImg = gMeme
     gCurrMeme.link = link
     gMemes.push(gCurrMeme)
-    console.log('gCurrMeme', gCurrMeme);
     const savesMemes = loadFromStorage('meme')
 
     saveToStorage('meme', [gCurrMeme,...gMemes])
 }
-
 
 function downloadCanvas(link, data) {
     link.href = data;
