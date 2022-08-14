@@ -17,15 +17,16 @@
                 <span class="memegen"><img class="logo-img" src="./icons/logo.png" alt="">
             </div>
             <nav class="main-nav flex justify-center">
-                <label for="file-upload" class="nav-list custom-file-upload btn-im-flexible">
-                     Upload
-                </label>
-                <input type="file" class="hidden" id="file-upload" name="image" onchange="onImgInput(event);toggleModal()" />
                 <button class="nav-list btn-im-flexible" onclick="onSetFlexible();toggleModal()"><span
                         class="im-flexible">I'm flexible</span></button>
+                <label for="file-upload" class="custom-file-upload nav-list btn-gallery">Upload
+                </label>
+                <input type="file" class="hidden" id="file-upload" name="image"
+                    onchange="onImgInput(event);toggleModal()" />
                 <button class="nav-list btn-gallery" onclick="oncloseModal()">Gallery</button>
+                <button class="nav-list btn-gallery" onclick="onOpenMemes()">Memes</button>
             </nav>
-            <div class="container" onclick="myFunction(this); toggleMenu()">
+            <div class="container" onclick="onMenu(this); toggleMenu()">
                 <div class="bar1"></div>
                 <div class="bar2"></div>
                 <div class="bar3"></div>
@@ -35,19 +36,17 @@
 
     <main>
         <div class="gallery flex">
-            <div>.</div>
             <div class="gallery-container flex justify-center"></div>
             <section class="gallery-content flex "></section>
         </div>
     </main>
-
 
     <!-- Meme modal -->
     <div class="modal-body flex" id="canvasModal">
         <div class="modal-container">
             <section class="modal-content flex">
                 <div class="canvas-container flex justify-center">
-                    <canvas class="meme-canvas" width="500" height="500"></canvas>
+                    <canvas class="meme-canvas" width="600" height="600"></canvas>
                 </div>
                 <div class="meme-col flex ">
                     <form class="row" id="input1" onsubmit="onAddInput(event)">
@@ -59,53 +58,46 @@
                     <section class="row">
                         <div class="btn-row1">
                             <button class="btn switch-lines" onclick="onSwitchLines()"><img
-                                    src="./icons/up-and-down-opposite-double-arrows-side-by-side.png"
-                                    alt="" width="100%"></button>
-                            <button class="btn" onclick="submitForms()"><img
-                                    src="./icons/add.png" alt="" width="100%"></button>
-                            <button class="btn" onclick="onRemoveText()"><img
-                                    src="./icons/trash.png" alt="" width="100%"></button>
+                                    src="./icons/up-and-down-opposite-double-arrows-side-by-side.png" alt=""
+                                    width="100%"></button>
+                            <button class="btn" onclick="submitForms()"><img src="./icons/add.png" alt=""
+                                    width="100%"></button>
+                            <button class="btn" onclick="onRemoveText()"><img src="./icons/trash.png" alt=""
+                                    width="100%"></button>
                         </div>
                         <div class="btn-row1">
-                            <button class="btn" onclick="onAlignLeft()"><img
-                                    src="./icons/align-to-left.png" alt=""
+                            <button class="btn" onclick="onAlignLeft()"><img src="./icons/align-to-left.png" alt=""
                                     width="100%"></button>
-                            <button class="btn" onclick="onAlignCenter()"><img
-                                    src="./icons/center-text-alignment.png" alt=""
+                            <button class="btn" onclick="onAlignCenter()"><img src="./icons/center-text-alignment.png"
+                                    alt="" width="100%"></button>
+                            <button class="btn" onclick="onAlignRight()"><img src="./icons/align-to-right.png" alt=""
                                     width="100%"></button>
-                            <button class="btn" onclick="onAlignRight()"><img
-                                    src="./icons/align-to-right.png" alt=""
-                                    width="100%"></button>
-                            <button class="btn" onclick="onIncreaseFont()"><img
-                                    src="./icons/increase-font-icon.png" alt=""
-                                    width="100%"></button>
-                            <button class="btn" onclick="onDecreaseFont()"><img
-                                    src="./icons/decrease-font-icon.png" alt=""
-                                    width="100%"></button>
+                            <button class="btn" onclick="onIncreaseFont()"><img src="./icons/increase-font-icon.png"
+                                    alt="" width="100%"></button>
+                            <button class="btn" onclick="onDecreaseFont()"><img src="./icons/decrease-font-icon.png"
+                                    alt="" width="100%"></button>
                             <div style="position:relative; display:inline-block"></div>
                         </div>
                         <div class="btn-row1">
                             <button type="button" class="btn btn-color" name="textColor"><img
-                                    src="./icons/paint-board-and-brush.png" alt=""
-                                    width="100%" form="">
+                                    src="./icons/paint-board-and-brush.png" alt="" width="100%" form="">
                                 <input class="color" type="color" id="textColor" name="textColor" value="#ffff00"
                                     onchange="onSetColor(this.value)"
                                     style="opacity:0; position:absolute; left:0;top:0;width:100%" /></button>
-                            <button class="btn btn-color" name="strokeColor"><img
-                                    src="./icons/text-stroke.png" alt="" width="100%">
+                            <button class="btn btn-color" name="strokeColor"><img src="./icons/text-stroke.png" alt=""
+                                    width="100%">
                                 <input class="color" type="color" id="strokeColor" name="strokeColor" value="#ffff00"
                                     onchange="onTextStroke(this.value)"
                                     style="opacity:0; position:absolute; left:0;top:0;width:100%" /></button>
                         </div>
-                        <div class="btn-footer">
-                            <div class="share-container btn-meme" onclick="onUploadImg()">
-                                <a class="user-msg" href="#">Share</a>
-                            </div>
-                            <button class="btn-meme"><a class="link" href="#"
-                                    onclick="onSaveMeme(this)">Save</a></button>
-                            <button class="btn-meme"><a class="link" href="#" onclick="onDownloadCanvas(this)"
-                                    download="cool-canvas">Download</a></button>
+                        <div class="btn-row1">
+                            <span class="margin" onclick="onUploadImg()"><a class="link" href="#">Share</a></span>
+                            <span class="margin"><a class="link" href="#"
+                                    onclick="onSaveMeme(this)">Save</a></span>
+                            <span class="margin"><a class="link" href="#" onclick="onDownloadCanvas(this)"
+                                    download="cool-canvas">Download</a></span>
                         </div>
+                        <div class="user-msg btn-row1"></div>
                     </section>
                 </div>
             </section>
@@ -113,43 +105,18 @@
         </div>
     </div>
 
-    <!-- Meme gallery -->
-    <div class="modal-gallery" id="canvasModal">
-        <div class="modal-gallery-container"></div>
-        <button class="close-modal" onclick="toggleMemeGallery()">X</button>
-    </div>
-    </div>
 
-    <div class="pages flex space-between">
-        <button class="previous flex align-center"><span class="previous-txt full">Prev</span></button>
-        <button class="next flex align-center full"><span class="next-txt full">Next</span></button>
-    </div>
-    </div>
-    <footer class="main-footer-container flex ">
-        <div class="logo line flex justify-center align-center"><span class="footer-logo">memegen</span><span
-                class="dot">.</span></span></div>
-        <div class="copy-rights line flex justify-center">© 2014 All Rights Reserved - Find more free
-            Templates at &nbsp<a href="http://www.pixelhint.com" class="pixel">Pixelhint.com</a>
-        </div>
+
+    <footer class="main-footer-container flex justify-center align-center">
+        <div class="logo-footer flex justify-center"><img class="logo-img" src="./icons/logo.png" alt=""></div>
+        <div class="copy-rights">© 2014 All Rights Reserved</div>
     </footer>
-
-    <script>
-        function myFunction(x) {
-            x.classList.toggle("change");
-        }
-        function toggleMenu() {
-            document.body.classList.toggle('menu-opened');
-        }
-    </script>
 
     <script src='js/services/utilService.js'></script>
     <script src='js/services/storageService.js'></script>
-    <script src='js/gallery/galleryMemeService.js'></script>
-    <script src='js/gallery/galleryMemeController.js'></script>
-    <script src='js/gallery/galleryController.js'></script>
     <script src='js/memeService.js'></script>
     <script src='js/memeController.js'></script>
-    <script src='js/main.js'></script>
+    <script src='js/mainGallery.js'></script>
 </body>
 
 </html>

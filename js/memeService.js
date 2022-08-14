@@ -1,6 +1,15 @@
 'use-strict'
+
 var gLineId
 
+var gCurrMeme = {
+    name: '',
+    memeImg: null,
+    url: '',
+    link: null
+}
+
+var gMemes = []
 
 var gKeywordSearchCountMap = {
     'funny': 12, 'cat': 16, 'dog': 0, 'puppy': 0, 'baby': 2,
@@ -8,7 +17,7 @@ var gKeywordSearchCountMap = {
     'sleep': 0, 'success': 0, 'awkward ': 0, 'lazy': 0, 'weird': 0,
 }
 
-var gImgs = [
+const gImgs = [
     { id: 1, url: 'img/1.jpg', keywords: ['funny', 'cat'] },
     { id: 2, url: 'img/2.jpg', keywords: ['dog', 'happy'] },
     { id: 3, url: 'img/3.jpg', keywords: ['baby', 'dog'] },
@@ -27,6 +36,13 @@ var gImgs = [
     { id: 16, url: 'img/16.jpg', keywords: ['baby', 'success'] },
     { id: 17, url: 'img/17.jpg', keywords: ['baby', 'success'] },
     { id: 18, url: 'img/18.jpg', keywords: ['baby', 'success'] },
+    { id: 19, url: 'img/19.jpg', keywords: ['baby', 'success'] },
+    { id: 20, url: 'img/20.jpg', keywords: ['baby', 'success'] },
+    { id: 21, url: 'img/21.jpg', keywords: ['baby', 'success'] },
+    { id: 22, url: 'img/22.jpg', keywords: ['baby', 'success'] },
+    { id: 23, url: 'img/23.jpg', keywords: ['baby', 'success'] },
+    { id: 24, url: 'img/24.jpg', keywords: ['baby', 'success'] },
+    { id: 25, url: 'img/25.jpg', keywords: ['baby', 'success'] },
 ]
 
 var gMeme = {
@@ -60,7 +76,7 @@ function getMeme() {
     return gMeme
 }
 
-function getImg() {
+function getImgs() {
     return gImgs
 }
 
@@ -214,3 +230,19 @@ function downloadCanvas(link, data) {
     link.download = 'my-canvas';
 }
 
+function loadImageFromInput(ev, onImageReady) {
+    document.querySelector('.nav-list').innerHTML = ''
+
+    var reader = new FileReader()
+
+    reader.onload = (event) => {
+        var img = new Image()
+        var gUploadedImg = new Image()
+        img.src = event.target.result
+        gUploadedImg.src = event.target.result
+        img.onload = onImageReady.bind(null, img)
+        gUploadedImg.onload = onImageReady.bind(null, img)
+    }
+
+    reader.readAsDataURL(ev.target.files[0])
+}
