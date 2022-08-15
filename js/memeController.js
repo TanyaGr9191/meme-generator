@@ -49,9 +49,33 @@ function drawImage() {
     gCtx.closePath()
 }
 
-function drawText() {
+var gSticker
 
+function createSticker(pos) {
+    gSticker = {
+        pos,
+        size: 40,
+        isDrag: false
+    }
 }
 
+function getSticker() {
+    return gSticker
+}
 
+function isClicked(clickedPos) {
+    // const pos = gCircle.pos
+    const { pos } = gSticker
+    const distance = Math.sqrt((pos.x - clickedPos.x) ** 2 + (pos.y - clickedPos.y) ** 2)
+    return distance <= gSticker.size
+}
+
+function setStickerDrag(isDrag) {
+    gSticker.isDrag = isDrag
+}
+
+function moveSticker(dx, dy) {
+    gSticker.pos.x += dx
+    gSticker.pos.y += dy
+}
 

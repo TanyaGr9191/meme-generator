@@ -4,6 +4,7 @@ var gElCanvas
 var gCtx
 var gUploadedImg
 var gStartPos
+var gDraggedEl = null
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 
 function onInit() {
@@ -11,8 +12,8 @@ function onInit() {
     gCtx = gElCanvas.getContext('2d')
     console.log('ctx', gCtx)
 
-
     addListeners()
+    resizeCanvas()
     renderGallery()
     renderCanvas()
     chooseStickers()
@@ -35,7 +36,6 @@ function submitForms() {
 }
 
 function onSetColor(elColor) {
-    console.log('elColor',elColor)
     setLineColor(elColor)
     renderCanvas()
 }
@@ -83,7 +83,6 @@ function onAlignLeft() {
 function onDownloadCanvas(elLink) {
     const data = gElCanvas.toDataURL();
     downloadCanvas(elLink, data)
-
 }
 
 function onSetFlexible() {
@@ -195,11 +194,7 @@ function renderGallery() {
 
 function renderCanvas() {
     drawImage()
-    drawText()
-}
-
-function test(params) {
-    timeout
+    renderSticker()
 }
 
 function resizeCanvas() {
@@ -210,20 +205,8 @@ function resizeCanvas() {
 
 function clearCanvas() {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
-    // You may clear part of the canvas
-    // gCtx.clearRect(0, 0, gElCanvas.width / 2, gElCanvas.height / 2);
+    
 }
-
-
-function addListeners() {
-    window.addEventListener('resize', (ev) => {
-        ev.preventDefault()
-        resizeCanvas()
-        renderCanvas()
-    })
-}
-
-var gDraggedEl = null
 
 function drag(ev) {
     gDraggedEl = ev.target.currentSrc
@@ -234,11 +217,104 @@ function allowDrop(ev) {
 }
 
 function drop(ev) {
-    let posX = ev.offsetX - gElCanvas.offsetLeft;
-    let posY = ev.offsetY - gElCanvas.offsetTop;
+    const { offsetX, offsetY } = ev
+    const pos = { x: offsetX, y: offsetY }
+
+    createSticker(pos)
+    console.log('gSticker',gSticker)
+    renderSticker()
+}
+
+function addListeners() {
+    addMouseListeners()
+    addTouchListeners()
+    window.addEventListener('resize', () => {
+        resizeCanvas()
+        renderCanvas()
+    })
+    window.addEventListener('change', (ev) => {
+        ev.preventDefault()
+        renderSticker()
+    })
+}
+
+function addMouseListeners() {
+    gElCanvas.addEventListener('mousemove', onMove)
+    gElCanvas.addEventListener('mousedown', onDown)
+    gElCanvas.addEventListener('mouseup', onUp)
+}
+
+function addTouchListeners() {
+    gElCanvas.addEventListener('touchmove', onMove)
+    gElCanvas.addEventListener('touchstart', onDown)
+    gElCanvas.addEventListener('touchend', onUp)
+}
+
+function onMove(ev) {
+    const sticker = getSticker()
+    if (!sticker.isDrag) return
+    const pos = getEvPos(ev)
+    const dx = pos.x - gStartPos.x
+    const dy = pos.y - gStartPos.y
+    moveSticker(dx, dy)
+    gStartPos = pos
+    renderCanvas()
+    renderSticker()
+}
+
+function onDown(ev) {
+    // Getting the clicked position
+    const pos = getEvPos(ev)
+    if (!isClicked(pos)) return
+    setStickerDrag(true)
+    gStartPos = pos
+    document.body.style.cursor = 'grabbing'
+}
+
+function onUp() {
+    setStickerDrag(false)
+    document.body.style.cursor = 'grab'
+}
+
+function getEvPos(ev) {
+    var pos = {
+        x: ev.offsetX,
+        y: ev.offsetY
+    }
+    // const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
+    if (gTouchEvs.includes(ev.type)) {
+        ev.preventDefault()
+        ev = ev.changedTouches[0]
+        pos = {
+            x: ev.pageX - ev.target.offsetLeft,
+            y: ev.pageY - ev.target.offsetTop
+        }
+    }
+    return pos
+}
+
+function onSetSticker() {
+    let shape = document.querySelector('.select-shape').value
+    setSticker(shape)
+    addListeners()
+    renderCanvas()
+}
+
+function renderSticker() {
+    const sticker = getSticker()
+    if(!sticker) return
+    const { pos, color, size } = sticker
+   
     const imggg = new Image()
 
     imggg.src = gDraggedEl
 
-    gCtx.drawImage(imggg, posX, posY, 40, 40)
+    gCtx.drawImage(imggg, pos.x, pos.y, 40, 40)
+}
+
+function draw(ev) {
+    const { offsetX, offsetY } = ev
+    const pos = { x: offsetX, y: offsetY }
+    createSticker(pos)
+    renderSticker()
 }

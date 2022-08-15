@@ -135,8 +135,10 @@ function resetCanvas() {
     bottomLine.stroke = 'black'
     topLine.isText = false
     bottomLine.isText = false
+    bottomLine.align = 
     gLineId = undefined
     gUploadedImg = undefined
+    gSticker = null
 }
 
 function addInput(text1, text2) {
